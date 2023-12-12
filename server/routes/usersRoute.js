@@ -3,14 +3,17 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middlewares/authMiddleware");
-
+const logger = require("../logger/logging");
 // Register
 router.post("/register", async (req, res) => {
   try {
     // Check if user already exists
     const userExists = await User.findOne({ email: req.body.email });
-    if (userExists) throw new Error("User with this email already exists");
+    if (userExists) {
+      logger.info("[Success] User Already exists with the email " + req.body.email);
+      throw new Error("User with this email already exists");
 
+}
     // Hash password
     req.body.password = await bcrypt.hash(req.body.password, 10);
 
@@ -20,7 +23,10 @@ router.post("/register", async (req, res) => {
     res
       .status(201)
       .json({ message: "User registered successfully", success: true });
+
+      logger.info("[Success] User Registered successfully with the email " + req.body.email);
   } catch (error) {
+    logger.info("[Failure] " + error.message);
     res.status(500).json({ message: error.message, success: false });
   }
 });
@@ -53,7 +59,9 @@ router.post("/login", async (req, res) => {
       success: true,
       data: token,
     });
+    logger.info("[Success] User Loggend in successfully with the email " + req.body.email);
   } catch (error) {
+    logger.info("[Failure] " + error.message);
     res.status(500).json({ message: error.message, success: false });
   }
 });
@@ -67,7 +75,9 @@ router.get("/get-current-user", authMiddleware, async (req, res) => {
       success: true,
       data: user,
     });
+    logger.info("[Success] User Fetched successfully with the Id " + req.userId);
   } catch (error) {
+    logger.info("[Failure] " + error.message);
     res.status(500).json({ message: error.message, success: false });
   }
 });
@@ -94,7 +104,9 @@ router.put("/update-user", authMiddleware, async (req, res) => {
       success: true,
       data: updatedUser,
     });
+    logger.info("[Success] User Updated successfully with the email " + req.body._id);
   } catch (error) {
+    logger.info("[Failure] " + error.message);
     res.status(500).json({ message: error.message, success: false });
   }
 });
@@ -107,7 +119,9 @@ router.get("/get-all-users", async (req, res) => {
       success: true,
       data: users,
     });
+    logger.info("[Success] User Fetched successfully");
   } catch (error) {
+    logger.info("[Failure] " + error.message);
     res.status(500).json({ message: error.message, success: false });
   }
 });
