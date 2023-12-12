@@ -21,6 +21,20 @@ pipeline{
                 sh 'docker build -t frontend-image ./client'
             }
         }
+        stage('Push Images to DockerHub') {
+            steps {
+
+                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker tag frontend-image vishnutha/frontend-image:latest'
+                    sh 'docker push vishnutha/frontend-image:latest'
+                    sh 'docker tag backend-image vishnutha/backend-image:latest'
+                    sh 'docker push vishnutha/backend-image:latest'
+                }          
+            }
+        }
+
+        
 
 
     }
