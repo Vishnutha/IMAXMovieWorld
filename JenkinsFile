@@ -7,7 +7,8 @@ pipeline{
     stages{
         stage('Clone Git'){
             steps{
-                git clone 'https://github.com/Vishnutha/IMAXMovieWorld.git'
+                git branch: 'master',
+                    url:'https://github.com/Vishnutha/Calculator.git'
             }
         }
         stage('Build Backend Image') {
@@ -20,7 +21,7 @@ pipeline{
                 sh 'docker build -t frontend-image ./client'
             }
         }
-        
+
 
     }
 }
