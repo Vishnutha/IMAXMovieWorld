@@ -3,7 +3,7 @@ services:
   frontend:
     image: frontend-image:latest
     ports:
-      - '3000:3000'
+      - '5173:5173'
   backend:
     image: backend-image:latest
     ports:
