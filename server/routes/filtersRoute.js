@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Movie = require("../models/movieModel");
 const Artist = require("../models/artistsModel");
 const authMiddleware = require("../middlewares/authMiddleware");
-
+const logger = require("../logger/logging");
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const search = req.query.search || "";
@@ -27,7 +27,10 @@ router.get("/", authMiddleware, async (req, res) => {
       },
       success: true,
     });
+    logger.info("[Success] Search rendered");
+
   } catch (error) {
+    logger.info("[Failure]" + error.message);
     res.status(500).json({ error: error.message, success: false });
   }
 });
