@@ -1,4 +1,4 @@
-[2023-12-12 22:24:44.674] [info] [Success] User Loggend in successfully with the email name3@example.com
+[2023-12-12 22:24:44.674] [info] [Success] User Logged in successfully with the email name3@example.com
 [2023-12-12 22:24:45.009] [info] [Success] User Fetched successfully with the Id 657830727dcb3f191c01ca41
 [2023-12-12 22:24:45.976] [info] [Success] Movies fetched successfullly from the database
 [2023-12-12 22:24:46.217] [info] [Success] User Fetched successfully with the Id 657830727dcb3f191c01ca41
@@ -24,3 +24,7 @@
 [2023-12-12 22:28:51.372] [info] [Success] User Fetched successfully with the Id 657830727dcb3f191c01ca41
 [2023-12-12 22:28:52.089] [info] [Success] Movies fetched successfullly from the database
 [2023-12-12 22:28:52.092] [info] [Success] Movies fetched successfullly from the database
+[2023-12-12 23:09:11.095] [info] [Success] User Fetched successfully with the Id 657830727dcb3f191c01ca41
+[2023-12-12 23:09:11.109] [info] [Success] User Fetched successfully with the Id 657830727dcb3f191c01ca41
+[2023-12-12 23:09:12.061] [info] [Success] Movies fetched successfullly from the database
+[2023-12-12 23:09:13.268] [info] [Success] Movies fetched successfullly from the database
