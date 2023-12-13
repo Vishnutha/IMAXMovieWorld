@@ -1,0 +1,24 @@
+---
+- name: Deploy Application
+  hosts: your_target_host
+  become: yes
+  tasks:
+    - name: Update code from Git
+      git:
+        repo: https://github.com/Vishnutha/IMAXMovieWorld.git
+        dest: /path/to/deployment/directory
+        version: master
+
+    - name: Deploy Backend
+      docker_container:
+        name: backend-container
+        image: sahithi008/backend-image:latest
+        state: started
+        restart_policy: always
+
+    - name: Deploy Frontend
+      docker_container:
+        name: frontend-container
+        image: sahithi008/frontend-image:latest
+        state: started
+        restart_policy: always

@@ -3,12 +3,13 @@ pipeline{
     environment{
         MONGO="mongodb+srv://vishnutha03:1234@cluster0.bzighwq.mongodb.net/"
         JWT="4de49e71da8814001d14d302b24519bb59ceabd68cc4e3dfdffac21bbd6dbfa49da2b4549d4fe37f87347c0bcc4c6634ca388fac10a21362e9a29e1049b9034c"
+        DOCKER_HUB_CRED = credentials('DockerHubCred')
     }
     stages{
         stage('Clone Git'){
             steps{
                 git branch: 'master',
-                    url:'https://github.com/Vishnutha/Calculator.git'
+                    url:'https://github.com/Vishnutha/IMAXMovieWorld.git'
             }
         }
         stage('Build Backend Image') {
@@ -24,13 +25,14 @@ pipeline{
         stage('Push Images to DockerHub') {
             steps {
 
-                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker tag frontend-image vishnutha/frontend-image:latest'
-                    sh 'docker push vishnutha/frontend-image:latest'
-                    sh 'docker tag backend-image vishnutha/backend-image:latest'
-                    sh 'docker push vishnutha/backend-image:latest'
-                }          
+                withCredentials([usernamePassword(credentialsId: 'DockerHubCred', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                    sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+                    sh 'docker tag frontend-image sahithi008/frontend-image:latest'
+                    sh 'docker push sahithi008/frontend-image:latest'
+                    sh 'docker tag backend-image sahithi008/backend-image:latest'
+                    sh 'docker push sahithi008/backend-image:latest'
+                }
+     
             }
         }
         stage('Clean docker images')
