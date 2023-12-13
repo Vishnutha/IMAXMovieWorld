@@ -1,24 +1,14 @@
 ---
-- name: Deploy Application
-  hosts: your_target_host
-  become: yes
+- name: Deploy
+  hosts: all
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   tasks:
-    - name: Update code from Git
-      git:
-        repo: https://github.com/Vishnutha/IMAXMovieWorld.git
-        dest: /path/to/deployment/directory
-        version: master
+    - name: Copy Docker Compose file
+      copy:
+        src: docker-compose.yml
+        dest: "docker-compose.yml"
 
-    - name: Deploy Backend
-      docker_container:
-        name: backend-container
-        image: sahithi008/backend-image:latest
-        state: started
-        restart_policy: always
-
-    - name: Deploy Frontend
-      docker_container:
-        name: frontend-container
-        image: sahithi008/frontend-image:latest
-        state: started
-        restart_policy: always
+    - name: Run Docker Compose
+      command: docker-compose up -d
