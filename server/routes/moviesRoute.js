@@ -53,7 +53,7 @@ router.get("/:id", async (req, res) => {
       .populate("cast")
       .populate("createdBy");
     res.status(200).json({ data: movie, success: true });
-    logger.info("[Success] Movies fetched successfullly from the database with the id " + id)
+    logger.info("[Success] Movies fetched successfullly from the database with the id " + req.params.id)
     
   } catch (error) {
     logger.info("[Failure] " + error.message);
