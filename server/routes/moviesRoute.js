@@ -69,7 +69,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
       req.body,
       { new: true }
     );
-    logger.info("[Success] Movie updated successfullly from the database")
+    logger.info("[Success] Movie updated successfullly to the database")
     res.send({
       message: "Movie updated successfully",
       success: true,
