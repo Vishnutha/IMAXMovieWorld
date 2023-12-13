@@ -43,6 +43,7 @@ pipeline{
         }
         stage('Ansible Deployment') {
             steps {
+                ansiblePlaybook
                     colorized: true,
                     credentialsId: 'localhost',
                     disableHostKeyChecking: true,
