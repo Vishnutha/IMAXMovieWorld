@@ -9,7 +9,7 @@ export default defineConfig({
     port : 5173,
     proxy: {
       "/api": {
-        target: "https://d277-103-174-162-76.ngrok.io",
+        target: "http://localhost:5000/",
         changeOrigin: true,
         secure: false,
       }
