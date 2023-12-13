@@ -41,6 +41,18 @@ pipeline{
         
             }
         }
+        stage('Ansible Deployment') {
+            steps {
+                    colorized: true,
+                    credentialsId: 'localhost',
+                    disableHostKeyChecking: true,
+                    installation: 'Ansible',
+                    sudoUser: null
+                script { 
+                    sh 'ansible-playbook -i inventory playbook.yml'
+                }
+            }
+        }
 
         
 

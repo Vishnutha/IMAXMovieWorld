@@ -1,14 +1,12 @@
 ---
-- name: Deploy
+- name: Deploy IMAX world Application
   hosts: all
-  # become: true
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
+  become: true
   tasks:
-    # - name: Copy Docker Compose file
-    #   copy:
-    #     src: docker-compose.yml
-    #     dest: "docker-compose.yml"
+    - name: Copy Docker Compose file
+      copy:
+        src: docker-compose.yml
+        dest: "{{ playbook_dir }}/docker-compose.yml"
 
     - name: Run Docker Compose
       command: docker-compose up -d
