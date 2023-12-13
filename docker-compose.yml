@@ -1,11 +1,13 @@
 version: '3'
 services:
   frontend:
-    image: frontend-image:latest
+    # image: frontend-image:latest
+    image: sahithi008/frontend-image:latest
     ports:
       - '5173:5173'
   backend:
-    image: backend-image:latest
+    # image: backend-image:latest
+    image: sahithi008/backend-image:latest
     ports:
       - '5000:5000'
     environment:
