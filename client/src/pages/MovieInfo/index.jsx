@@ -9,7 +9,7 @@ import ReviewForm from "./ReviewForm";
 import { GetAllReviews } from "../../apis/reviews";
 
 function MovieInfo() {
-  const [reviews, setReviews] = useState([]);
+  const [reviwes, setReviews] = useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -122,7 +122,7 @@ function MovieInfo() {
         </div>
 
         <div className="mt-5 flex flex-col gap-2">
-          {reviews.map((review) => {
+          {reviwes.map((review) => {
             return (
               <div
                 key={review?._id}
